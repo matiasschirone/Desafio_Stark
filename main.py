@@ -1,3 +1,3 @@
 from menu import *
 
-stark_marvel_app(lista_personajes)
+stark_marvel_app_2(lista_personajes)

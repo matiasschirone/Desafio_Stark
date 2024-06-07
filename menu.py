@@ -87,3 +87,81 @@ def stark_marvel_app(lista_personaje)-> None:
         pausar()
      
      
+def menu_2() -> str:
+    """
+    Muestra un menú de opciones y solicita al usuario que ingrese una opción.
+
+    Returns:
+        str: La opción seleccionada por el usuario. 
+    """
+    limpiar_pantalla()
+    print(f"{'Menú de Opciones':^50s}")
+    print("A- Superhéroes de género M")
+    print("B- Superhéroes de género F")
+    print("C- Superhéroe más alto de género M")
+    print("D- Superhéroe más bajo de género M")
+    print("E- Superhéroe más alto de género F")
+    print("F- Superhéroe más bajo de género F")
+    print("G- Altura promedio de los superhéroes de género M")
+    print("H- Altura promedio de los superhéroes de género F")
+    print("I- Nombre de superhéroes de los puntos C a F")
+    print("J- Superhéroes con cada tipo de color de ojos")
+    print("K- Superhéroes con cada tipo de color de pelo")
+    print("L- Determinar cuántos superhéroes tienen cada tipo de inteligencia")
+    print("M- Todos los superhéroes agrupados por color de ojos")
+    print("N- Todos los superhéroes agrupados por color de pelo")
+    print("O- Todos los superhéroes agrupados por tipo de inteligencia")
+    print("S- Salir")
+    
+    opcion = input("Por favor, ingrese la letra de la opción elegida: ").upper()
+    return opcion
+
+
+    
+    
+    
+def stark_marvel_app_2(lista_personaje)-> None:
+    stark_normalizar_datos(lista_personaje)
+    while True:
+        
+        match menu_2():
+            case "A":
+                superheroes_por_genero(lista_personajes, "M")
+            case "B":
+                superheroes_por_genero(lista_personajes, "F")
+            case "C":
+                superheroe_mas_alto_M = super_mas_alto_genero(lista_personajes, "M")
+                imprimir_superheroe_mas_alto_genero(superheroe_mas_alto_M, "masculino")
+            case "D":
+                super_heroe_mas_alto_f = super_mas_alto_genero(lista_personajes, "F")
+                imprimir_superheroe_mas_alto_genero(super_heroe_mas_alto_f, "femenino")
+            case "E":
+                super_heroe_mas_bajo_m = super_mas_bajo_genero(lista_personajes, "M")
+                imprimir_superheroe_mas_bajo_genero(super_heroe_mas_bajo_m)
+            case "F":
+                super_heroe_mas_bajo_f = super_mas_bajo_genero(lista_personajes, "F")
+                imprimir_superheroe_mas_bajo_genero(super_heroe_mas_bajo_f)
+            case "G":
+                mostar_super_mas_pesado(lista_personajes)
+            case "H":
+                mostar_super_mas_liviano(lista_personajes)
+            case "I":
+                break
+            case "J":
+                break
+            case "K":
+                break
+            case "L":
+                break
+            case "M":
+                break
+            case "N":
+                break
+            case "O":
+                break
+            case "S":
+                break
+            case _:
+                print("Opcion no valida")
+            
+        pausar()

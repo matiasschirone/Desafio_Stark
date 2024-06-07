@@ -77,7 +77,7 @@ def mostrar_altura_personajes(lista_personajes: list) -> None:
         print("La lista de personajes está vacía.")
 
             
-def mostar_super_mas_alto(lista_personajes: list) -> None:
+def mostar_super_mas_alto(lista_personajes: list) -> list:
     """Muestra al superhéroe más alto.
 
     Args:
@@ -168,3 +168,123 @@ def mostar_super_mas_liviano(lista_personajes: list) -> None:
     nombre = lista_personajes[minimo_peso]["nombre"]
     peso = lista_personajes[minimo_peso]["peso"]
     print(f"El superhéroe más liviano es: {nombre} con {peso} kg.")
+    
+def superheroes_por_genero(lista_personajes: list, genero):
+    """_summary_
+
+    Args:
+        lista_personajes (list): _description_
+        genero (_type_): _description_
+    """
+    print("----------------------------------")
+    print(f"   Personajes de genero: {genero}.")
+    print("----------------------------------")
+    for personaje in lista_personajes:
+        if personaje['genero'] == genero:
+            print(personaje['nombre'])
+            
+
+def super_mas_alto_genero(lista_personajes: list, genero: str) -> dict:
+    """Encuentra al superhéroe más alto del género especificado en la lista.
+
+    Args:
+        lista_personajes (list): Una lista de diccionarios que representan a los personajes.
+        genero (str): El género que se desea filtrar ("M" para masculino, "F" para femenino, etc.).
+
+    Returns:
+        dict: Un diccionario que contiene el nombre y la altura del superhéroe más alto del género especificado.
+    """
+    mas_alto = None
+    
+    for heroe in lista_personajes:
+        if "genero" in heroe and heroe["genero"] == genero:
+            if mas_alto is None or heroe["altura"] > mas_alto["altura"]:
+                mas_alto = heroe
+                
+    return mas_alto
+
+def imprimir_superheroe_mas_alto_genero(superheroe: dict, genero: str) -> None:
+    """Imprime la información del superhéroe más alto del género especificado.
+
+    Args:
+        superheroe (dict): Un diccionario que representa al superhéroe más alto.
+        genero (str): El género del superhéroe.
+
+    Returns:
+        None
+    """
+    if superheroe:
+        print(f"El superhéroe más alto de género {genero} es: {superheroe['nombre']}, con una altura de {superheroe['altura']:.2f}")
+    else:
+        print(f"No se encontró ningún superhéroe de género {genero} en la lista.")
+        
+def super_mas_bajo_genero(lista_personajes: list, genero: str) -> dict:
+    """Encuentra al superhéroe más alto del género especificado en la lista.
+
+    Args:
+        lista_personajes (list): Una lista de diccionarios que representan a los personajes.
+        genero (str): El género que se desea filtrar ("M" para masculino, "F" para femenino, etc.).
+
+    Returns:
+        dict: Un diccionario que contiene el nombre y la altura del superhéroe más alto del género especificado.
+    """
+    mas_bajo = None
+    
+    for heroe in lista_personajes:
+        if "genero" in heroe and heroe["genero"] == genero:
+            if mas_bajo is None or heroe["altura"] < mas_bajo["altura"]:
+                mas_bajo = heroe
+                
+    return mas_bajo
+
+def imprimir_superheroe_mas_bajo_genero(superheroe: dict, genero: str) -> None:
+    """Imprime la información del superhéroe más alto del género especificado.
+
+    Args:
+        superheroe (dict): Un diccionario que representa al superhéroe más alto.
+        genero (str): El género del superhéroe.
+
+    Returns:
+        None
+    """
+    if superheroe:
+        print(f"El superhéroe más alto de género {genero} es: {superheroe['nombre']}, con una altura de {superheroe['altura']:.2f}")
+    else:
+        print(f"No se encontró ningún superhéroe de género {genero} en la lista.")
+
+def altura_promedio_genero(lista_personajes: list, genero: str) -> float:
+    """Calcula la altura promedio de los superhéroes del género especificado en la lista.
+
+    Args:
+        lista_personajes (list): Una lista de diccionarios que representan a los superhéroes.
+        genero (str): El género de los superhéroes para calcular la altura promedio ("M" para masculino, "F" para femenino, etc.).
+
+    Returns:
+        float: La altura promedio de los superhéroes del género especificado.
+    """
+    total_altura = 0
+    total_superheroes = 0
+    
+    for heroe in lista_personajes:
+        if "genero" in heroe and heroe["genero"] == genero:
+            total_altura += heroe["altura"]
+            total_superheroes += 1
+            
+    if total_superheroes == 0:
+        return []
+    else:
+        return total_altura / total_superheroes
+
+
+
+stark_normalizar_datos(lista_personajes)
+
+altura_promedio_m = altura_promedio_genero(lista_personajes, "M")
+print(f"ma altura promedio masculina es: {altura_promedio_m:.2f}")
+print("------------------------------------------------")
+
+altura_promedio_f = altura_promedio_genero(lista_personajes, "F")
+print(f"ma altura promedio femenina es: {altura_promedio_f:.2f}")
+
+
+
