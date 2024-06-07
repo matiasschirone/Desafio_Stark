@@ -142,23 +142,38 @@ def stark_marvel_app_2(lista_personaje)-> None:
                 super_heroe_mas_bajo_f = super_mas_bajo_genero(lista_personajes, "F")
                 imprimir_superheroe_mas_bajo_genero(super_heroe_mas_bajo_f)
             case "G":
-                mostar_super_mas_pesado(lista_personajes)
+                altura_promedio_m = altura_promedio_genero(lista_personajes, "M")
+                print(f"altura promedio masculina es: {altura_promedio_m:.2f}")
             case "H":
-                mostar_super_mas_liviano(lista_personajes)
+                altura_promedio_f = altura_promedio_genero(lista_personajes, "F")
+                print(f"altura promedio femenina es: {altura_promedio_f:.2f}")
             case "I":
-                break
+                superheroe_mas_alto_M = super_mas_alto_genero(lista_personajes, "M")
+                imprimir_nombre_superheroe(superheroe_mas_alto_M, "masculino", "alto")
+                super_heroe_mas_alto_f = super_mas_alto_genero(lista_personajes, "F")
+                imprimir_nombre_superheroe(super_heroe_mas_alto_f, "femenino", "alto")
+                super_heroe_mas_bajo_m = super_mas_bajo_genero(lista_personajes, "M")
+                imprimir_nombre_superheroe(super_heroe_mas_bajo_m, "masculino", "bajo")
+                super_heroe_mas_bajo_f = super_mas_bajo_genero(lista_personajes, "F")
+                imprimir_nombre_superheroe(super_heroe_mas_bajo_f, "femenino", "bajo")
             case "J":
-                break
+                color_ojos = contar_superheroes_por_color_de_ojos(lista_personajes)
+                print(color_ojos)
             case "K":
-                break
+                color_pelo = contar_superheroes_por_color_de_pelo(lista_personajes)
+                print(color_pelo)
             case "L":
-                break
+                resultado_inteligencia = contar_superheroes_por_inteligencia(lista_personajes)
+                print(resultado_inteligencia)
             case "M":
-                break
+                resultado_color_de_ojos = agrupar_superheroes_por_color_de_ojos(lista_personajes)
+                print(resultado_color_de_ojos)
             case "N":
-                break
+                resultado_color_pelo = agrupar_superheroes_por_color_pelo(lista_personajes)
+                print(resultado_color_pelo)
             case "O":
-                break
+                resultado_inteligencia = agrupar_superheroes_por_inteligencia(lista_personajes)
+                print(resultado_inteligencia)
             case "S":
                 break
             case _:

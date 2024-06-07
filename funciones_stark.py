@@ -276,15 +276,171 @@ def altura_promedio_genero(lista_personajes: list, genero: str) -> float:
         return total_altura / total_superheroes
 
 
+def imprimir_nombre_superheroe(superheroe: dict, genero: str, tipo: str) -> None:
+    """Imprime el nombre del superhéroe asociado al resultado de una función.
+
+    Args:
+        superheroe (dict): Un diccionario que representa al superhéroe.
+        genero (str): El género del superhéroe.
+        tipo (str): El tipo de resultado ("alto" o "bajo").
+
+    Returns:
+        None
+    """
+    if superheroe:
+        print(f"El superhéroe más {tipo} de género {genero} es: {superheroe['nombre']}")
+    else:
+        print(f"No se encontró ningún superhéroe {tipo} de género {genero} en la lista.")
+
+def contar_superheroes_por_color_de_ojos(lista_personajes):
+    """
+    Cuenta cuántos superhéroes hay para cada tipo de color de ojos.
+
+    Args:
+        lista_personajes (list): Una lista de diccionarios que representan a los superhéroes.
+
+    Returns:
+        dict: Un diccionario donde las claves son los colores de ojos y los valores son la cantidad de superhéroes con ese color de ojos.
+    """
+    contador_color_ojos = {}
+
+    for personaje in lista_personajes:
+        color_ojos = personaje["color_ojos"]
+        if color_ojos in contador_color_ojos:
+            contador_color_ojos[color_ojos] += 1
+        else:
+            contador_color_ojos[color_ojos] = 1
+
+    return contador_color_ojos
+
+def contar_superheroes_por_color_de_pelo(lista_personajes):
+    """
+    Cuenta cuántos superhéroes hay para cada tipo de color de pelo.
+
+    Args:
+        lista_personajes (list): Una lista de diccionarios que representan a los superhéroes.
+
+    Returns:
+        dict: Un diccionario donde las claves son los colores de pelo y los valores son la cantidad de superhéroes con ese color de pelo.
+    """
+    contador_color_pelo = {}
+
+    for personaje in lista_personajes:
+        color_pelo = personaje["color_pelo"]
+        if color_pelo in contador_color_pelo:
+            contador_color_pelo[color_pelo] += 1
+        else:
+            contador_color_pelo[color_pelo] = 1
+
+    return contador_color_pelo
+
+def contar_superheroes_por_inteligencia(lista_personajes):
+    """
+    Cuenta cuántos superhéroes hay para cada tipo de inteligencia.
+
+    Args:
+        lista_personajes (list): Una lista de diccionarios que representan a los superhéroes.
+
+    Returns:
+        dict: Un diccionario donde las claves son los tipos de inteligencia y los valores son la cantidad de superhéroes con ese tipo de inteligencia.
+    """
+    contador_inteligencia = {}
+
+    for personaje in lista_personajes:
+        if "inteligencia" in personaje:
+            tipo_inteligencia = personaje["inteligencia"]
+        else:
+            tipo_inteligencia = "No Tiene"
+        
+        if tipo_inteligencia in contador_inteligencia:
+            contador_inteligencia[tipo_inteligencia] += 1
+        else:
+            contador_inteligencia[tipo_inteligencia] = 1
+
+    return contador_inteligencia
+
+
+def agrupar_superheroes_por_color_de_ojos(lista_personajes:list)-> dict:
+    """
+    Agrupa los superhéroes por color de ojos y cuenta cuántos hay de cada color.
+
+    Args:
+        lista_personajes (list): Una lista de diccionarios que representan a los superhéroes.
+
+    Returns:
+        dict: Un diccionario donde las claves son los colores de ojos y los valores son listas de nombres de superhéroes.
+    """
+    dic_superheroes_por_color = {}
+
+    for personaje in lista_personajes:
+        color_ojos = personaje["color_ojos"]
+        nombre_superheroe = personaje["nombre"]
+        
+        if color_ojos in dic_superheroes_por_color:
+            dic_superheroes_por_color[color_ojos].append(nombre_superheroe)
+        else:
+            dic_superheroes_por_color[color_ojos] = [nombre_superheroe]
+
+    return dic_superheroes_por_color
+
+
+def agrupar_superheroes_por_color_pelo(lista_personajes):
+    """
+    Agrupa los superhéroes por color de pelo y cuenta cuántos hay de cada color.
+
+    Args:
+        lista_personajes (list): Una lista de diccionarios que representan a los superhéroes.
+
+    Returns:
+        dict: Un diccionario donde las claves son los colores de pelo y los valores son listas de nombres de superhéroes.
+    """
+    dic_superheroes_por_color_pelo = {}
+
+    for personaje in lista_personajes:
+        color_pelo = personaje["color_pelo"]
+        nombre_superheroe = personaje["nombre"]
+        
+        if color_pelo in dic_superheroes_por_color_pelo:
+            dic_superheroes_por_color_pelo[color_pelo].append(nombre_superheroe)
+        else:
+            dic_superheroes_por_color_pelo[color_pelo] = [nombre_superheroe]
+
+    return dic_superheroes_por_color_pelo
+
+
+def agrupar_superheroes_por_inteligencia(lista_personajes: list)-> dict:
+    """
+    Agrupa los superhéroes por nivel de inteligencia y cuenta cuántos hay de cada nivel.
+
+    Args:
+        lista_personajes (list): Una lista de diccionarios que representan a los superhéroes.
+
+    Returns:
+        dict: Un diccionario donde las claves son los niveles de inteligencia y los valores son listas de nombres de superhéroes.
+    """
+    dic_superheroes_por_inteligencia = {}
+
+    for personaje in lista_personajes:
+        inteligencia = personaje["inteligencia"]
+        nombre_superheroe = personaje["nombre"]
+        
+        if inteligencia in dic_superheroes_por_inteligencia:
+            dic_superheroes_por_inteligencia[inteligencia].append(nombre_superheroe)
+        else:
+            dic_superheroes_por_inteligencia[inteligencia] = [nombre_superheroe]
+
+    return dic_superheroes_por_inteligencia
+
+
+
+
 
 stark_normalizar_datos(lista_personajes)
 
-altura_promedio_m = altura_promedio_genero(lista_personajes, "M")
-print(f"ma altura promedio masculina es: {altura_promedio_m:.2f}")
+
 print("------------------------------------------------")
 
-altura_promedio_f = altura_promedio_genero(lista_personajes, "F")
-print(f"ma altura promedio femenina es: {altura_promedio_f:.2f}")
+
 
 
 
