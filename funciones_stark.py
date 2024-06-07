@@ -55,7 +55,9 @@ def stark_imprimir_nombres_heroes(lista_personajes: list) -> None:
     try:
         if not lista_personajes:
             raise ValueError("La lista de personajes no puede estar vacía")
-        
+        print("-------------------------")
+        print("Lista de superheroes")
+        print("-------------------------")
         for heroe in lista_personajes:
             nombre = obtener_nombre(heroe)
             print(nombre)
@@ -69,10 +71,10 @@ def mostrar_altura_personajes(lista_personajes: list) -> None:
         lista_personajes (list): Una lista de diccionarios que representan a los personajes.
     """
     if lista_personajes:
-        print("Nombre         Altura")
-        print("------------------------")
+        print("Nombre                     Altura")
+        print("----------------------------------------")
         for superheroe in lista_personajes:
-            print(f"{superheroe['nombre']: <10} | {superheroe['altura']:5.2f}")
+            print(f"{superheroe['nombre']: >20} | {superheroe['altura']:5.2f}")
     else:
         print("La lista de personajes está vacía.")
 
@@ -291,154 +293,88 @@ def imprimir_nombre_superheroe(superheroe: dict, genero: str, tipo: str) -> None
         print(f"El superhéroe más {tipo} de género {genero} es: {superheroe['nombre']}")
     else:
         print(f"No se encontró ningún superhéroe {tipo} de género {genero} en la lista.")
-
-def contar_superheroes_por_color_de_ojos(lista_personajes):
-    """
-    Cuenta cuántos superhéroes hay para cada tipo de color de ojos.
-
-    Args:
-        lista_personajes (list): Una lista de diccionarios que representan a los superhéroes.
-
-    Returns:
-        dict: Un diccionario donde las claves son los colores de ojos y los valores son la cantidad de superhéroes con ese color de ojos.
-    """
-    contador_color_ojos = {}
-
-    for personaje in lista_personajes:
-        color_ojos = personaje["color_ojos"]
-        if color_ojos in contador_color_ojos:
-            contador_color_ojos[color_ojos] += 1
-        else:
-            contador_color_ojos[color_ojos] = 1
-
-    return contador_color_ojos
-
-def contar_superheroes_por_color_de_pelo(lista_personajes):
-    """
-    Cuenta cuántos superhéroes hay para cada tipo de color de pelo.
-
-    Args:
-        lista_personajes (list): Una lista de diccionarios que representan a los superhéroes.
-
-    Returns:
-        dict: Un diccionario donde las claves son los colores de pelo y los valores son la cantidad de superhéroes con ese color de pelo.
-    """
-    contador_color_pelo = {}
-
-    for personaje in lista_personajes:
-        color_pelo = personaje["color_pelo"]
-        if color_pelo in contador_color_pelo:
-            contador_color_pelo[color_pelo] += 1
-        else:
-            contador_color_pelo[color_pelo] = 1
-
-    return contador_color_pelo
-
-def contar_superheroes_por_inteligencia(lista_personajes):
-    """
-    Cuenta cuántos superhéroes hay para cada tipo de inteligencia.
-
-    Args:
-        lista_personajes (list): Una lista de diccionarios que representan a los superhéroes.
-
-    Returns:
-        dict: Un diccionario donde las claves son los tipos de inteligencia y los valores son la cantidad de superhéroes con ese tipo de inteligencia.
-    """
-    contador_inteligencia = {}
-
-    for personaje in lista_personajes:
-        if "inteligencia" in personaje:
-            tipo_inteligencia = personaje["inteligencia"]
-        else:
-            tipo_inteligencia = "No Tiene"
         
-        if tipo_inteligencia in contador_inteligencia:
-            contador_inteligencia[tipo_inteligencia] += 1
-        else:
-            contador_inteligencia[tipo_inteligencia] = 1
 
-    return contador_inteligencia
-
-
-def agrupar_superheroes_por_color_de_ojos(lista_personajes:list)-> dict:
+def contar_superheroes_por_atributo(lista_personajes: list, atributo: str) -> dict:
     """
-    Agrupa los superhéroes por color de ojos y cuenta cuántos hay de cada color.
+    Cuenta cuántos superhéroes hay para cada valor de un atributo dado.
 
     Args:
         lista_personajes (list): Una lista de diccionarios que representan a los superhéroes.
+        atributo (str): El atributo por el cual contar los superhéroes (e.g., 'color_ojos', 'color_pelo', 'inteligencia').
 
     Returns:
-        dict: Un diccionario donde las claves son los colores de ojos y los valores son listas de nombres de superhéroes.
+        dict: Un diccionario donde las claves son los valores del atributo y los valores son la cantidad de superhéroes con ese valor de atributo.
     """
-    dic_superheroes_por_color = {}
+    conteo_atributo = {}
 
     for personaje in lista_personajes:
-        color_ojos = personaje["color_ojos"]
-        nombre_superheroe = personaje["nombre"]
-        
-        if color_ojos in dic_superheroes_por_color:
-            dic_superheroes_por_color[color_ojos].append(nombre_superheroe)
-        else:
-            dic_superheroes_por_color[color_ojos] = [nombre_superheroe]
+        if atributo in personaje:
+            valor_atributo = personaje[atributo] if personaje[atributo] else "No Tiene"
+            if valor_atributo in conteo_atributo:
+                conteo_atributo[valor_atributo] += 1
+            else:
+                conteo_atributo[valor_atributo] = 1
 
-    return dic_superheroes_por_color
+    return conteo_atributo
 
 
-def agrupar_superheroes_por_color_pelo(lista_personajes):
+def imprimir_conteo_superheroes_por_atributo(conteo_superheroes: dict, atributo: str)-> str:
     """
-    Agrupa los superhéroes por color de pelo y cuenta cuántos hay de cada color.
+    Imprime el conteo de superhéroes agrupados por un atributo específico.
+
+    Args:
+        conteo_superheroes (dict): Un diccionario donde las claves son los valores del atributo y los valores son la cantidad de superhéroes con ese atributo.
+        atributo (str): El nombre del atributo por el cual se agruparon los superhéroes (por ejemplo, 'color de ojos', 'color de pelo', 'inteligencia').
+    """
+    print(f"Conteo de superhéroes por {atributo}:")
+    print("------------------------------------------------")
+    for clave, valor in conteo_superheroes.items():
+        print(f"- {clave if clave else 'No Tiene'}: {valor}")
+
+
+
+def agrupar_superheroes_por_atributo(lista_personajes: list, atributo: str) -> dict:
+    """
+    Agrupa los superhéroes por un atributo dado y devuelve un diccionario con los nombres de los superhéroes.
 
     Args:
         lista_personajes (list): Una lista de diccionarios que representan a los superhéroes.
+        atributo (str): El atributo por el cual agrupar los superhéroes (e.g., 'color_ojos', 'color_pelo', 'inteligencia').
 
     Returns:
-        dict: Un diccionario donde las claves son los colores de pelo y los valores son listas de nombres de superhéroes.
+        dict: Un diccionario donde las claves son los valores del atributo y los valores son listas de nombres de superhéroes.
     """
-    dic_superheroes_por_color_pelo = {}
+    dic_superheroes_por_atributo = {}
 
     for personaje in lista_personajes:
-        color_pelo = personaje["color_pelo"]
-        nombre_superheroe = personaje["nombre"]
-        
-        if color_pelo in dic_superheroes_por_color_pelo:
-            dic_superheroes_por_color_pelo[color_pelo].append(nombre_superheroe)
-        else:
-            dic_superheroes_por_color_pelo[color_pelo] = [nombre_superheroe]
+        if atributo in personaje:
+            valor_atributo = personaje[atributo]
+            nombre_superheroe = personaje["nombre"]
+            
+            if valor_atributo in dic_superheroes_por_atributo:
+                dic_superheroes_por_atributo[valor_atributo].append(nombre_superheroe)
+            else:
+                dic_superheroes_por_atributo[valor_atributo] = [nombre_superheroe]
 
-    return dic_superheroes_por_color_pelo
+    return dic_superheroes_por_atributo
 
-
-def agrupar_superheroes_por_inteligencia(lista_personajes: list)-> dict:
+def imprimir_superheroes_por_atributo(dic_superheroes: dict, atributo: str)-> str:
     """
-    Agrupa los superhéroes por nivel de inteligencia y cuenta cuántos hay de cada nivel.
+    Imprime los superhéroes agrupados por un atributo específico.
 
     Args:
-        lista_personajes (list): Una lista de diccionarios que representan a los superhéroes.
-
-    Returns:
-        dict: Un diccionario donde las claves son los niveles de inteligencia y los valores son listas de nombres de superhéroes.
+        dic_superheroes (dict): Un diccionario donde las claves son los valores del atributo y los valores son listas de nombres de superhéroes.
+        atributo (str): El nombre del atributo por el cual se agruparon los superhéroes.
     """
-    dic_superheroes_por_inteligencia = {}
-
-    for personaje in lista_personajes:
-        inteligencia = personaje["inteligencia"]
-        nombre_superheroe = personaje["nombre"]
-        
-        if inteligencia in dic_superheroes_por_inteligencia:
-            dic_superheroes_por_inteligencia[inteligencia].append(nombre_superheroe)
-        else:
-            dic_superheroes_por_inteligencia[inteligencia] = [nombre_superheroe]
-
-    return dic_superheroes_por_inteligencia
+    print(f"Superhéroes agrupados por {atributo}:")
+    print("------------------------------------------------")
+    for clave, lista_nombres in dic_superheroes.items():
+        print(f"- {clave if clave else 'No Tiene'}: {', '.join(lista_nombres)}")
 
 
 
 
-
-stark_normalizar_datos(lista_personajes)
-
-
-print("------------------------------------------------")
 
 
 

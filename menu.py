@@ -15,8 +15,37 @@ def validar_entero(numero):
         return True
     except ValueError:
         return False
+    
+def menu_principal()->str:
+    
+    limpiar_pantalla()
+    print(f"{'menu de opciones':^50s}")
+    print("********************************")
+    print("1- Desafio Stark 00")
+    print("2- Desafio Stark 01")
+    print("3- Salir")
+    opcion = input("Por favor, ingrese el número de la opción elegida: ")
 
+    if validar_entero(opcion):
+        return int(opcion)
+    else:
+        return False
 
+def stark_marvel_app(lista_personaje)-> None:
+    stark_normalizar_datos(lista_personaje)
+    while True:
+        
+        match menu_principal():
+            case 1:
+                stark_marvel_1(lista_personaje)
+            case 2:
+                stark_marvel_2(lista_personaje)
+            case 3:
+                break
+            case _:
+                print("Opcion no valida")
+            
+        pausar()
 
 def menu()->str:
     """
@@ -27,6 +56,7 @@ def menu()->str:
     """
     limpiar_pantalla()
     print(f"{'menu de opciones':^50s}")
+    print("********************************")
     print("1- Lista de super heroes")
     print("2- Altura de los super heroes")
     print("3- Super heroe mas alto")
@@ -44,21 +74,8 @@ def menu()->str:
     else:
         return False
     
-def pausar():
-    """
-    Pausa la ejecución del programa hasta que el usuario presione una tecla.
-    """
-    import os
-    os.system("pause")
     
-def limpiar_pantalla():
-    """
-    Limpia la pantalla de la consola.
-    """
-    import os
-    os.system("cls")
-    
-def stark_marvel_app(lista_personaje)-> None:
+def stark_marvel_1(lista_personaje)-> None:
     stark_normalizar_datos(lista_personaje)
     while True:
         
@@ -96,6 +113,7 @@ def menu_2() -> str:
     """
     limpiar_pantalla()
     print(f"{'Menú de Opciones':^50s}")
+    print("********************************")
     print("A- Superhéroes de género M")
     print("B- Superhéroes de género F")
     print("C- Superhéroe más alto de género M")
@@ -115,12 +133,9 @@ def menu_2() -> str:
     
     opcion = input("Por favor, ingrese la letra de la opción elegida: ").upper()
     return opcion
-
-
+ 
     
-    
-    
-def stark_marvel_app_2(lista_personaje)-> None:
+def stark_marvel_2(lista_personaje)-> None:
     stark_normalizar_datos(lista_personaje)
     while True:
         
@@ -157,26 +172,40 @@ def stark_marvel_app_2(lista_personaje)-> None:
                 super_heroe_mas_bajo_f = super_mas_bajo_genero(lista_personajes, "F")
                 imprimir_nombre_superheroe(super_heroe_mas_bajo_f, "femenino", "bajo")
             case "J":
-                color_ojos = contar_superheroes_por_color_de_ojos(lista_personajes)
-                print(color_ojos)
+                resultado_color_ojos = contar_superheroes_por_atributo(lista_personajes, "color_ojos")
+                imprimir_conteo_superheroes_por_atributo(resultado_color_ojos, "color de ojos")
             case "K":
-                color_pelo = contar_superheroes_por_color_de_pelo(lista_personajes)
-                print(color_pelo)
+                resultado_color_pelo = contar_superheroes_por_atributo(lista_personajes, "color_pelo")
+                imprimir_conteo_superheroes_por_atributo(resultado_color_pelo, "color de pelo")
             case "L":
-                resultado_inteligencia = contar_superheroes_por_inteligencia(lista_personajes)
-                print(resultado_inteligencia)
+                resultado_inteligencia = contar_superheroes_por_atributo(lista_personajes, "inteligencia")
+                imprimir_conteo_superheroes_por_atributo(resultado_inteligencia, "inteligencia")
             case "M":
-                resultado_color_de_ojos = agrupar_superheroes_por_color_de_ojos(lista_personajes)
-                print(resultado_color_de_ojos)
+                resultado_color_ojos = agrupar_superheroes_por_atributo(lista_personajes, "color_ojos")
+                imprimir_superheroes_por_atributo(resultado_color_ojos, "color de ojos")
             case "N":
-                resultado_color_pelo = agrupar_superheroes_por_color_pelo(lista_personajes)
-                print(resultado_color_pelo)
+                resultado_color_pelo = agrupar_superheroes_por_atributo(lista_personajes, "color_pelo")
+                imprimir_superheroes_por_atributo(resultado_color_pelo, "color de pelo")
             case "O":
-                resultado_inteligencia = agrupar_superheroes_por_inteligencia(lista_personajes)
-                print(resultado_inteligencia)
+                resultado_inteligencia = agrupar_superheroes_por_atributo(lista_personajes, "inteligencia")
+                imprimir_superheroes_por_atributo(resultado_inteligencia, "inteligencia")
             case "S":
                 break
             case _:
                 print("Opcion no valida")
             
         pausar()
+        
+def pausar():
+    """
+    Pausa la ejecución del programa hasta que el usuario presione una tecla.
+    """
+    import os
+    os.system("pause")
+    
+def limpiar_pantalla():
+    """
+    Limpia la pantalla de la consola.
+    """
+    import os
+    os.system("cls")
